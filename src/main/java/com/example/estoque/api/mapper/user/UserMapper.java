@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
+import org.mapstruct.factory.Mappers;
 
 @Mapper(
     componentModel = "spring",
@@ -15,11 +16,13 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface UserMapper {
 
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "role", source = "role", qualifiedByName = "stringToRole")
     User toEntity(UserCreateDTO dto);
 
-    @Mapping(target = "role", source = "role")
+    @Mapping(target = "role", source = "role", qualifiedByName = "roleToString")
     UserResponseDTO toDTO(User user);
 
     @Named("stringToRole")
@@ -32,5 +35,13 @@ public interface UserMapper {
         } catch (IllegalArgumentException e) {
             return null;
         }
+    }
+    
+    @Named("roleToString")
+    default String roleToString(Role role) {
+        if (role == null) {
+            return null;
+        }
+        return role.name();
     }
 }
