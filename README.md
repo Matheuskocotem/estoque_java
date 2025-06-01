@@ -17,7 +17,6 @@ Este projeto é um sistema de gerenciamento de estoque que permite o controle de
 ## 🛠️ Tecnologias
 
 - Java
-- [Adicione outras tecnologias/frameworks utilizados]
 
 ## ⚙️ Configuração
 
@@ -32,6 +31,3 @@ git clone [URL_DO_REPOSITÓRIO]
 
 4. Execute o projeto
 
-## 📝 Licença
-
-[Adicione a licença do projeto aqui]
